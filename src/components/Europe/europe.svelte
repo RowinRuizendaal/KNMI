@@ -1,9 +1,10 @@
 <script>
-	import { geoMercator, geoPath, interpolateViridis } from 'd3'
+	import { geoMercator, geoPath } from 'd3'
   	import { onMount } from 'svelte'
-	import { feature } from 'topojson'
+    import { feature } from 'topojson'
 
-	let mapData = []
+    let mapData = []
+
 	const width = 1000;
 	const height = 800;
     const center = [5, 70]
@@ -31,6 +32,8 @@
 
   let ammountColors = 16777215;
   let sliderValue = 0
+
+
 </script>
 
 <style>
@@ -43,8 +46,9 @@
 		  <path
             d={path(feature)}
             class={feature.properties.geounit}
-            fill={colorscheme(ammountColors)}
-		  />
+            fill={colorscheme(ammountColors)}>
+            <title>{feature.properties.geounit}</title>
+        </path>
         {/each}
         </g>
       </svg>
@@ -53,5 +57,6 @@
         <input type="range" bind:value={sliderValue} on:change={() => ammountColors += 1}>
         <p>{sliderValue}</p>
       </div>
+      
 </main>
 
