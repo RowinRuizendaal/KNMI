@@ -50,6 +50,28 @@ p {
 		 url('assets/fonts/bold.ttf') format('svg'); /* Legacy iOS */
   }
 
+  .jump {
+	animation: notwee 1s steps(13) infinite, spring 2s 1 !important; 
+	visibility: visible !important;
+}
+
+.jumpno22 {
+	animation: notwee 0.1s steps(13) infinite, spring 2s 1 !important; 
+	visibility: visible !important;
+}
+
+@keyframes notwee {
+	100% { background-position: var(--sheetbreedte) 0; }			/* De animatie */
+}
+
+@keyframes spring {
+	0% {transform: scale(0.7); filter: drop-shadow(-10px 5px 1px rgba(0,0,0,0.3)) blur(0px);}
+	50%{transform: scale(1.3); filter: drop-shadow(-50px 50px 25px rgba(0,0,0,0.3)) blur(5px);}
+	75%{transform: scale(1.3); filter: drop-shadow(-50px 50px 25px rgba(0,0,0,0.3)) blur(0px);}
+	100% {transform: scale(1.0); filter: drop-shadow(-30px 10px 4px rgba(0,0,0,0.3)) blur(0px);}			
+}
+
+
   @media only screen and (max-width: 600px) {
 	* {
 		overflow-x: hidden;

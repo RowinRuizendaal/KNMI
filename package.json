@@ -18,8 +18,11 @@
   },
   "dependencies": {
     "d3": "^6.3.1",
+    "mdbsvelte": "^1.0.12",
     "sirv-cli": "^1.0.0",
     "surge": "^0.21.7",
+    "svelte-chartjs": "^1.0.1",
+    "svelte-lazy": "^1.0.8",
     "topojson": "^3.0.2"
   }
 }

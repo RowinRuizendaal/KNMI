@@ -1,8 +1,48 @@
 <script>
-import App from "../../App.svelte";
+import { onMount } from 'svelte';
+
+onMount(() => {
+    const no2 = document.getElementById('no2');
+    const auto = document.getElementById('auto');
+    const hoest = document.getElementById('schadelijk')
 
 
+    // Function to recall to see if element is in viewport
+    const elementInViewport = (el) => {
+        let top = el.offsetTop;
+        let left = el.offsetLeft;
+        let width = el.offsetWidth;
+        let height = el.offsetHeight;
 
+        while (el.offsetParent) {
+            el = el.offsetParent;
+            top += el.offsetTop;
+            left += el.offsetLeft;
+        }
+
+        return (
+            top < (window.pageYOffset + window.innerHeight) &&
+            left < (window.pageXOffset + window.innerWidth) &&
+            (top + height) > window.pageYOffset &&
+            (left + width) > window.pageXOffset
+        );
+    }
+
+
+    window.onscroll = () => {
+        if (elementInViewport(no2)) {
+            no2.classList.add('jump');
+        }
+
+        if (elementInViewport(auto)) {
+            auto.classList.add('jump'); // Or whatever class you want to add
+        }
+
+        if (elementInViewport(hoest)) {
+            hoest.classList.add('jump')
+        }
+    }
+})
 </script>
 
 <style>
@@ -12,9 +52,8 @@ import App from "../../App.svelte";
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   height: 70vh;
+   height: 80vh;
    background-color: #C9DADA;
-   /* margin-bottom: 1rem; */
 }
 .introduction h1 {
    font-size: 4rem;
@@ -81,9 +120,6 @@ svg {
    filter: drop-shadow(-30px 10px 4px rgba(0,0,0,0.3));
 }
 
-.what__is__no2 {
- /* margin-bottom: 2rem; */
-}
 
 @media only screen and (max-width: 600px) {
    .introduction h1 {
@@ -136,10 +172,7 @@ svg {
          en worden sameen NOx genoemd.
       </p>
       </div>
-	</div>
-</section>
-
-<section class="what__is__no2">
+   </div>
    <div class="container">
       <div class="text">
       <h2>Wat veroorzaakt No2?</h2>
@@ -149,10 +182,7 @@ svg {
          de bodem en in water.</p>
       </div>
       <div id="auto"></div>
-	</div>
-</section>
-
-<section class="what__is__no2">
+   </div>
    <div class="container">
       <div id="schadelijk"></div>
       <div class="text">
@@ -164,6 +194,7 @@ svg {
       </div>
 	</div>
 </section>
+
 
 
 

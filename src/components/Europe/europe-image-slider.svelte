@@ -1,4 +1,5 @@
 <script>
+     import Lazy from 'svelte-lazy'
     const changeImage = (count) => {
     let src = `assets/slider/week${count}.png`
     document.getElementById('slider').src = src
@@ -21,7 +22,7 @@
   width: 20%;
   height: 1rem;
   background: transparent;
-  border: #00689A solid 1px;
+  border: #567C70 solid 1px;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -47,22 +48,25 @@
   appearance: none;
   width: 15px;
   height: 35px;
-  background: #00689A;
+  background: #567C70;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 15px;
   height: 35px;
-  background: #00689A;
+  background: #567C70;
   cursor: pointer;
 }
 </style>
-
     <div class="slidecontainer">
-        <p class='dateinfo'>Week: {currentImage}</p>
-        <input type="range" class='slider' min='1' max='4' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
-        <img id='slider' src='assets/slider/week1.png' alt='NO2 uitstoot'>
+      <h2>Vergelijk Tool</h2>
+      <p>Selecteer de te vergelijken landen</p>
+      <p class='dateinfo'>Week: {currentImage}</p>
+      <input type="range" class='slider' min='1' max='4' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
+      <Lazy>
+      <img id='slider' src='assets/slider/week1.png' alt='NO2 uitstoot'>
+      </Lazy>
       </div>
 
 
