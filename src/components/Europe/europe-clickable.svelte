@@ -38,6 +38,9 @@
 
 <style>
     .europe {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 4rem;
         display: flex;
         justify-content: center;
@@ -49,6 +52,7 @@
        stroke: white;
    }
 </style>
+
     <div class="europe">
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <g>
@@ -61,10 +65,9 @@
         {/each}
         </g>
       </svg>
-      
+    </div>
       <!-- <div class="slidecontainer">
         <input type="range" bind:value={sliderValue} on:change={() => ammountColors += 1}>
         <p>{sliderValue}</p>
       </div> -->
-    </div>
 

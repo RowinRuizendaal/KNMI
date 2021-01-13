@@ -60,8 +60,8 @@
 }
 </style>
     <div class="slidecontainer">
-      <h2>Vergelijk Tool</h2>
-      <p>Selecteer de te vergelijken landen</p>
+      <h2>No2 uitstoot Europa</h2>
+      <p>Selecteer de landen die u wilt vergelijken</p>
       <p class='dateinfo'>Week: {currentImage}</p>
       <input type="range" class='slider' min='1' max='4' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
       <Lazy>

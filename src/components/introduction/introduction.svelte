@@ -35,7 +35,7 @@ onMount(() => {
         }
 
         if (elementInViewport(auto)) {
-            auto.classList.add('jump'); // Or whatever class you want to add
+            auto.classList.add('jump');
         }
 
         if (elementInViewport(hoest)) {

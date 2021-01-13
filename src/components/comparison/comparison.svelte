@@ -143,22 +143,63 @@
         border-top-color: #fff;
     }
 
+    .icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+    .circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        background-color: #587d71;
+        margin-bottom: 2rem;
+    }
+
+    .circle h2 {
+        text-align: center;
+        font-size: 1rem;
+        color: #fff;
+    }
 </style>
+
+
 
 <section class="compare">
     <h2>landen vergelijken</h2>
-<div class="container">
-<div class="wrapper">
-    <div class="images">
-        <div class="img-1"></div>
-        <div class="img-2"></div>
+    <div class="container">
+       <div class="wrapper">
+          <div class="images">
+             <div class="img-1"></div>
+             <div class="img-2"></div>
+          </div>
+          <div class="slider">
+             <div class="drag-line">
+                <span></span>
+             </div>
+             <input type="range" min='0' max='100' value='50'>
+          </div>
+       </div>
     </div>
-    <div class="slider">
-        <div class="drag-line">
-            <span></span>
-        </div>
-        <input type="range" min='0' max='100' value='50'>
+    <div class="icons">
+       <div class="circle">
+           <h2>Icoon</h2>
+       </div>
+       <div class="circle">
+        <h2>Icoon</h2>
+       </div>
+       <div class="circle">
+        <h2>Icoon</h2>
+       </div>
+       <div class="circle">
+        <h2>Icoon</h2>
+       </div>
     </div>
-</div>
-</div>
-</section>
+ </section>
+ 
+ 
