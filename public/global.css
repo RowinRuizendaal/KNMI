@@ -12,8 +12,8 @@
 	--lichtblauw: #E5F0F9;				
 	--button-padding: 8px 15px;
 	--buton-radius: 3px;
-	--plaatmaat: 20vw; 											
-	--sheetbreedte: calc(var(--plaatmaat) * -13);
+	--plaatmaat: 20em; 											
+	--sheetbreedte: calc(var(--plaatmaat) * -12);
 }
 
 h1,
@@ -51,7 +51,7 @@ p {
   }
 
   .jump {
-	animation: notwee 1s steps(13) infinite, spring 2s 1 !important; 
+	animation: notwee 1s steps(12) infinite, spring 2s 1 !important; 
 	visibility: visible !important;
 }
 
