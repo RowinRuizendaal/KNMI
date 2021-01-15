@@ -43,6 +43,7 @@
         height: 100%;
         width: 100%;
         background: url('../assets/comparison/week4.png') no-repeat;
+        filter: grayscale(90%);
     }
 
     .wrapper .images .img-2 {

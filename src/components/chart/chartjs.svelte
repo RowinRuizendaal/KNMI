@@ -1,61 +1,92 @@
 <script>
+import Chart from 'chart.js'
+import {
+    onMount
+} from 'svelte';
 
-    import {MDBRow, MDBCol} from "mdbsvelte";
-    import Line from "svelte-chartjs/src/Line.svelte"
-  
-    let dataLine = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-          label: "My First dataset",
-          fill: true,
-          lineTension: 0.3,
-          backgroundColor: "rgba(225, 204,230, .3)",
-          borderColor: "rgb(205, 130, 158)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(205, 130,1 58)",
-          pointBackgroundColor: "rgb(255, 255, 255)",
-          pointBorderWidth: 10,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(0, 0, 0)",
-          pointHoverBorderColor: "rgba(220, 220, 220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: "My Second dataset",
-          fill: true,
-          lineTension: 0.3,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(35, 26, 136)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(35, 26, 136)",
-          pointBackgroundColor: "rgb(255, 255, 255)",
-          pointBorderWidth: 10,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(0, 0, 0)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: [28, 48, 40, 19, 86, 27, 90]
+export let data
+export let getal
+
+console.log(data, getal)
+
+onMount(async () => {
+    const data = await fetch('./dataset/Netherlands.json').then(res => res.json());
+    const data2 = await fetch('./dataset/Italy.json').then(res => res.json());
+
+
+
+    const convertDate = (date) => {
+        return date = data.map(d => d.date.value)
+            .filter(d => new Date(d).getFullYear() === 2020)
+            .map(d => `${new Date(d).getDate()} / ${new Date(d).getMonth()} / ${new Date(d).getFullYear()}`)
+    }
+
+
+    const test = (data) => {
+        const aap = []
+        data.map((d) => {
+            aap.push(d.number)
+        })
+        return aap
+    }
+
+
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: convertDate(data),
+            datasets: [{
+                label: 'Nederland',
+                backgroundColor: 'rgb(255,227,80)',
+                borderColor: 'rgb(255,227,80)',
+                data: test(data),
+                fill: false
+            }, ]
+
         }
-      ]
-    };
-  
-  
-  </script>
-  <MDBRow>
-    <MDBCol md="8" class="mx-auto">
-      <Line data={dataLine} options={{ responsive: true }}/>
-    </MDBCol>
-  </MDBRow>
-  
+    })
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: convertDate(data2),
+            datasets: [{
+                label: 'Italie',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: test(data2),
+                fill: false
+            }, ]
+
+        }
+    })
+})
+    
+</script>
+    
+    <style>
+    
+        .chart-container {
+            position: relative;
+            height: 5vh;
+            width: 40vw
+        }
+    
+        @media only screen and (max-width: 600px) {
+        .chart-container {
+            height: 100vh;
+            width: 100%;
+        }
+      }
+    </style>
+    
+    
+    
+    <div class="chart-container">
+    <canvas id="myChart"></canvas>
+    <canvas id="myChart2"></canvas>
+    {getal}
+    </div>

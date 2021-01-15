@@ -6,6 +6,17 @@
 	import Comparison from './components/comparison/comparison.svelte'
 	import Chart from './components/chart/chartjs.svelte'
 
+
+	let leeg = [];
+	const test = async () => {
+		const data = await (await fetch('./dataset/Netherlands.json')).json();
+		data.map((d) => {
+			leeg.push(d.number)
+		})
+		leeg = data
+	}
+	console.log(leeg)
+
 </script>
 
 <style>
@@ -15,8 +26,11 @@
 <main>
 <Introduction />
 <Imageslider />
-<!-- <Europe /> -->
 <Comparison />
-<!-- <Chart /> -->
+	{#await test()}
+	<p>Loading... filter data</p>
+	{:then data}
+	<Chart data={data} getal={20}/>
+	{/await}
 </main>
 
