@@ -1,5 +1,8 @@
 <script>
-     import Lazy from 'svelte-lazy'
+    import Lazy from 'svelte-lazy'
+    import Compare from '../comparison/comparison.svelte'
+
+  
     const changeImage = (count) => {
     let src = `assets/slider/week${count}.png`
     document.getElementById('slider').src = src
@@ -31,6 +34,7 @@
 
 #slider {
     margin-top: 2rem;
+    width: 90vw;
 }
 
 
@@ -63,10 +67,11 @@
       <h2>No2 uitstoot Europa</h2>
       <p>Selecteer de landen die u wilt vergelijken</p>
       <p class='dateinfo'>Week: {currentImage}</p>
-      <input type="range" class='slider' min='1' max='4' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
+      <input type="range" class='slider' min='1' max='14' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
       <Lazy>
       <img id='slider' src='assets/slider/week1.png' alt='NO2 uitstoot'>
       </Lazy>
+      <Compare week={currentImage} />
       </div>
 
 

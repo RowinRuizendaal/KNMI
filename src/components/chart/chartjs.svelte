@@ -7,7 +7,6 @@ import {
 export let data
 export let getal
 
-console.log(data, getal)
 
 onMount(async () => {
     const data = await fetch('./dataset/Netherlands.json').then(res => res.json());
