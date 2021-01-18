@@ -1,6 +1,6 @@
 <script>
 import Lazy from 'svelte-lazy'
-import { beforeUpdate, afterUpdate} from 'svelte'
+import { afterUpdate} from 'svelte'
 import maatregelen from '../../store/messurements'
 export let week;
 
@@ -8,7 +8,9 @@ $: weeknummer = week;
 
 
 let messurement;
+let test = []
 
+// Icons to be activated or not
 $: nederland = {
     'buiten' : false,
     'horeca' : false,
@@ -36,6 +38,7 @@ $: italie = {
 
 
 
+
 const changeWeek = (nummer, land) => {
     let categoryLand;
 
@@ -55,8 +58,9 @@ const changeWeek = (nummer, land) => {
         categoryLand[i] = false
         
     }
-    // Find what category is going to glow and set it t true
-    for (const i of findCategory) {
+
+   // Find what category is going to glow and set it t true
+      for (const i of findCategory) {
         categoryLand[i] = true
     }
     
@@ -68,8 +72,11 @@ const changeWeek = (nummer, land) => {
     if (findMeasure.length === 0) {
         messurement = 'Geen data voor deze week | No data for this week'
     } else {
-        messurement = findMeasure
+       for (let i in findMeasure) {
+         messurement = findMeasure
+       }
     }
+
     return messurement
 }
 
@@ -124,42 +131,7 @@ afterUpdate(() => {
 
 .active {
     opacity: 1;
-    animation: maatregeladd 5s 1 forwards; 
-}
-
-
-@keyframes maatregelactivate {
-	0% { transform: scale(1); opacity: 0.3; }
-	50% { transform: scale(1.5); }
-	100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes maatregeloff {
-	0% { opacity: 1; transform: scale(1); }
-	50% { transform: scale(0.5); opacity: 0.1; }
-	100% { opacity: 0.3; }
-}
-
-@keyframes maatregeladd {
-	0% { transform: scale(1); }
-	12.5% { opacity: 1; }
-	25% { opacity: 0.3; }
-	37.5% { opacity: 1; }
-	50% { transform: scale(1.5); opacity: 0.3; }
-	62.5% { opacity: 1; }
-	75% { opacity: 0.3; }
-	100% { opacity: 1; }
-}
-
-@keyframes maatregelsubtract {
-	0% { transform: scale(1); }
-	12.5% { opacity: 1; }
-	25% { opacity: 0.3; }
-	37.5% { opacity: 1; }
-	50% { transform: scale(0.5); opacity: 0.3; }
-	62.5% { opacity: 1; }
-	75% { opacity: 0.3; }
-	100% { opacity: 1; }
+    animation: var(--maatregel); 
 }
 
 </style>
@@ -174,28 +146,28 @@ afterUpdate(() => {
           </Lazy>
           <div class="icons">
              <div class="circle">
-                <img class="{nederland.buiten ? 'active' : 'not-active'}" src="./assets/icons/buiten.svg" alt="buiten">
+                <img class="{nederland.buiten ? 'active' : 'not-active'}" src="./assets/Icons/buiten.svg" alt="buiten">
              </div>
              <div class="circle">
-                <img class={nederland.horeca ? 'active' : 'not-active'} src="./assets/icons/horeca.svg" alt="horeca">
+                <img class={nederland.horeca ? 'active' : 'not-active'} src="./assets/Icons/horeca.svg" alt="horeca">
              </div>
              <div class="circle nederland-reizen">
-                <img class={nederland.reizen ? 'active' : 'not-active'} src="./assets/icons/reizen.svg" alt="reizen">
+                <img class={nederland.reizen ? 'active' : 'not-active'} src="./assets/Icons/reizen.svg" alt="reizen">
              </div>
              <div class="circle">
-                <img class={nederland.samenkomsten ? 'active' : 'not-active'} src="./assets/icons/samenkomsten.svg" alt="samenkomen">
+                <img class={nederland.samenkomsten ? 'active' : 'not-active'} src="./assets/Icons/samenkomsten.svg" alt="samenkomen">
              </div>
              <div class="circle">
-                <img class={nederland.sport ? 'active' : 'not-active'} src="./assets/icons/sport.svg" alt="sport">
+                <img class={nederland.sport ? 'active' : 'not-active'} src="./assets/Icons/sport.svg" alt="sport">
              </div>
              <div class="circle">
-                <img class={nederland.werk ? 'active' : 'not-active'} src="./assets/icons/werk.svg" alt="werk">
+                <img class={nederland.werk ? 'active' : 'not-active'} src="./assets/Icons/werk.svg" alt="werk">
              </div>
              <div class="circle">
-                <img class={nederland.winkels ? 'active' : 'not-active'} src="./assets/icons/winkels.svg" alt="winkels">
+                <img class={nederland.winkels ? 'active' : 'not-active'} src="./assets/Icons/winkels.svg" alt="winkels">
              </div>
              <div class="circle">
-                <img class={nederland.bezoek ? 'active' : 'not-active'} src="./assets/icons/bezoek.svg" alt="bezoek">
+                <img class={nederland.bezoek ? 'active' : 'not-active'} src="./assets/Icons/bezoek.svg" alt="bezoek">
              </div>
           </div>
           <p>Nederland: {changeWeek(weeknummer, 'Nederland')}</p>
@@ -206,28 +178,28 @@ afterUpdate(() => {
           </Lazy>
           <div class="icons">
              <div class="circle">
-                <img class={italie.buiten ? 'active' : 'not-active'} src="./assets/icons/buiten.svg" alt="buiten">
+                <img class={italie.buiten ? 'active' : 'not-active'} src="./assets/Icons/buiten.svg" alt="buiten">
              </div>
              <div class="circle">
-                <img class={italie.horeca ? 'active' : 'not-active'} src="./assets/icons/horeca.svg" alt="horeca">
+                <img class={italie.horeca ? 'active' : 'not-active'} src="./assets/Icons/horeca.svg" alt="horeca">
              </div>
              <div class="circle">
-                <img class={italie.reizen ? 'active' : 'not-active'} src="./assets/icons/reizen.svg" alt="reizen">
+                <img class={italie.reizen ? 'active' : 'not-active'} src="./assets/Icons/reizen.svg" alt="reizen">
              </div>
              <div class="circle">
-                <img class={italie.samenkomsten ? 'active' : 'not-active'} src="./assets/icons/samenkomsten.svg" alt="samenkomen">
+                <img class={italie.samenkomsten ? 'active' : 'not-active'} src="./assets/Icons/samenkomsten.svg" alt="samenkomen">
              </div>
              <div class="circle">
-                <img class={italie.sport ? 'active' : 'not-active'} src="./assets/icons/sport.svg" alt="sport">
+                <img class={italie.sport ? 'active' : 'not-active'} src="./assets/Icons/sport.svg" alt="sport">
              </div>
              <div class="circle">
-                <img class={italie.werk ? 'active' : 'not-active'} src="./assets/icons/werk.svg" alt="werk">
+                <img class={italie.werk ? 'active' : 'not-active'} src="./assets/Icons/werk.svg" alt="werk">
              </div>
              <div class="circle">
-                <img class={italie.winkels ? 'active' : 'not-active'} src="./assets/icons/winkels.svg" alt="winkels">
+                <img class={italie.winkels ? 'active' : 'not-active'} src="./assets/Icons/winkels.svg" alt="winkels">
              </div>
              <div class="circle">
-                <img class={italie.bezoek ? 'active' : 'not-active'} src="./assets/icons/bezoek.svg" alt="bezoek">
+                <img class={italie.bezoek ? 'active' : 'not-active'} src="./assets/Icons/bezoek.svg" alt="bezoek">
              </div>
           </div>
           <p>Italie: {changeWeek(weeknummer, 'Italie')}</p>

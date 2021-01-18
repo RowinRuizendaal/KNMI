@@ -167,19 +167,15 @@ svg {
       <div id="no2"></div>
       <div class="text">
       <h2>Wat is No2?</h2>
-		<p>NO2 of stikstofdioxide is een gas dat onstaat bij allerlei verbrandingsprocessen. Bij zeer hoge temperaturen onstaan er chemische reacties
-         tusseen stikstof (NO) en door verdere reactie met zuurstof ook stikstofdioxide (NO2). Deze twee gaasen zijn de meeste voorkomende stikstofoxiden
-         en worden sameen NOx genoemd.
+		<p>NO2 of stikstofdioxide is een gas dat onstaat bij verschillende soorten verbrandingsprocessen. Bij hele hoge temperaturen onstaan er chemische reacties
+         tusseen stikstof (N2) en zuurstof (O2). Hierbij onstaat er eerst stikstofmonoxide (NO) en door de verdere reactie met zuurstof ook stikstofdioxide (NO2).
       </p>
       </div>
    </div>
    <div class="container">
       <div class="text">
       <h2>Wat veroorzaakt No2?</h2>
-		<p>NO2 is vooral afkomstig van verbrandingsprocessen door menselijke activiteiten. Zoals verbranden van fossiele brandstoffen (kolen, olie, aardgas, diesel
-         benzine). Industrie, energiecentrales, scheepvaart en het wegverkeer zijn doordoor belangrijk sectoren voor de uitstoot van NO2 in Nederland.
-         NO2 kan ook op de natuurlijke wijze ontstaan, zoals bij bosbranden of door bliksem in de atmosfeer. Ook planten en bacteriën kunnen NO2 aanmaken in
-         de bodem en in water.</p>
+		<p>NO2 wordt vooral veroorzaakt door verbrandingsprocessen door menselijke activiteiten, zoals het verbranden van fossiele brandstoffen (kolen, olie, aardgas, diesel, en benzine). Industrie, energiecentrales, scheepvaart en het wegverkeer zijn daardoor belangrijke sectoren voor de uitstoot van NO2 in Nederland.NO2 kan ook op natuurlijke wijze ontstaan, zoals bij bosbranden of door bliksem in de atmosfeer. Ook planten en bacteriën kunnen NO2 aanmaken in de bodem en in water.</p>
       </div>
       <div id="auto"></div>
    </div>
@@ -187,9 +183,8 @@ svg {
       <div id="schadelijk"></div>
       <div class="text">
       <h2>Waarom is NO2 schadelijk?</h2>
-		<p>Stikstofdioxide kan voor mensen schadelijk zijn. Dat komt omdat het door kan dringen tot in de kleinste vertakkingen van de luchtwegen.
-         Daardoor gaan de longen minder goed werken. Menseen kunnen luchtwegklachten en astma-aanvallen krijgen. Het komt ook voor dat mensen
-         gevoeliger worden voor infecties.
+		<p>Stikstofdioxide is in grote hoeveelheid schadelijk voor de mens. Dat komt omdat doordringt tot de kleinste vertakkingen van de luchtwegen, daardoor gaan de longen minder goed werken. Mensen kunnen daardoor luchtwegklachten en astma-aanvallen krijgen.
+         In de natuur zorgt NO2 ervoor dat de biodiversiteit afneemt, dit betekend dat er er veel soorten planten worden verdrongen door planten die goed groeien door NO2, zoals gras en brandnetels. Met het gevolg dat niet alleen planten uitsterven maar ook dieren.  
       </p>
       </div>
 	</div>

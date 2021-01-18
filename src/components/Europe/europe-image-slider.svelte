@@ -33,8 +33,10 @@
 }
 
 #slider {
-    margin-top: 2rem;
+    margin-top: -15rem;
     width: 90vw;
+    object-fit: none;
+    margin-bottom: -15rem;
 }
 
 
@@ -67,7 +69,7 @@
       <h2>No2 uitstoot Europa</h2>
       <p>Selecteer de landen die u wilt vergelijken</p>
       <p class='dateinfo'>Week: {currentImage}</p>
-      <input type="range" class='slider' min='1' max='14' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
+      <input type="range" class='slider' min='1' max='20' bind:value={currentImage} on:change={() => changeImage(currentImage)}>
       <Lazy>
       <img id='slider' src='assets/slider/week1.png' alt='NO2 uitstoot'>
       </Lazy>

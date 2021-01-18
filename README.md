@@ -4,6 +4,71 @@
 
 # KNMI No2
 
+This project is to Comparing the NO2 air pollution during COVID-19 in different cities to see what measures help most in reducing air pollution.
+
+
+## Where are the datasets from?
+
+Getting images from [Google Earth engine](https://earthengine.google.com/)
+
+Messurements from [Europe](#)
+
+Getting the NO2 data for making graphs [Google Earth engine](https://earthengine.google.com/)
+
+```js
+var startDate = '2019-01-01';
+var endDate = '2020-12-31';
+var weekDifference = ee.Date(startDate).advance(1, 'week').millis().subtract(ee.Date(startDate).millis());
+var listMap = ee.List.sequence(ee.Date(startDate).millis(), ee.Date(endDate).millis(), weekDifference)
+
+function getWeeklyData(date) {
+  var collection = ee.ImageCollection('COPERNICUS/S5P/NRTI/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate(date, date.advance(1, 'week'))
+  .filterBounds(geometry)
+  
+  var mean = collection.mean()
+  var reducers = ee.Reducer.mean();
+  
+  //reproject the image to get a correct CRS
+  var reprojected = mean
+  .unitScale(0,1)
+  .reproject('EPSG:4326', null, 100)
+  
+  //Use the combined reducer to get the mean and SD of the image
+  var stats = reprojected.reduceRegion({
+    reducer: reducers,
+    bestEffort: true,
+    geometry: geometry
+  });
+  
+  return {
+    date: date,
+    number: stats.get('tropospheric_NO2_column_number_density')
+  };
+}
+
+var data = listMap.map(function(dateMillis) {
+  var date = ee.Date(dateMillis);
+  return getWeeklyData(date)
+});
+
+print(data)
+
+```
+
+Got help from the other team from Stan & Jordy
+
+### Team
+
+Rowin Ruizendaal
+Nienke Cornielje
+Youri Stil
+
+
+
+### How to install
+
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
