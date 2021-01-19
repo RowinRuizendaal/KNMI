@@ -14,6 +14,7 @@
 	--buton-radius: 3px;
 	--plaatmaat: 20em; 											
 	--sheetbreedte: calc(var(--plaatmaat) * -12);
+	--sheetbreedte-adem: calc(var(--plaatmaat) * -36);
 	--maatregel: maatregeladd 5s 1 forwards
 }
 
@@ -56,10 +57,23 @@ p {
 	visibility: visible !important;
 }
 
+.jump-adem {
+	animation: nodrie 3s steps(36) infinite, spring 2s 1 !important; 
+	visibility: visible !important;
+}
+
+
 .jumpno22 {
 	animation: notwee 0.1s steps(13) infinite, spring 2s 1 !important; 
 	visibility: visible !important;
 }
+
+
+
+@keyframes nodrie {
+	100% { background-position: var(--sheetbreedte-adem) 0; }			/* De animatie */
+}
+
 
 @keyframes notwee {
 	100% { background-position: var(--sheetbreedte) 0; }			/* De animatie */

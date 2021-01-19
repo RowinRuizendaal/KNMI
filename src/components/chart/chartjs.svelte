@@ -4,7 +4,7 @@ import {
     onMount
 } from 'svelte';
 
-export let data
+
 export let getal
 
 

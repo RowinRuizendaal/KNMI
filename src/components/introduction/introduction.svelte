@@ -39,7 +39,7 @@ onMount(() => {
         }
 
         if (elementInViewport(hoest)) {
-            hoest.classList.add('jump')
+            hoest.classList.add('jump-adem')
         }
     }
 })
