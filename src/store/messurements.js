@@ -95,12 +95,6 @@ const maatregelen = [{
     'maatregel': 'Vanaf 29 april mogen zelfstandig wonende 70-plussers af en toe door dezelfde of twee personen worden bezocht.'
 },
 {
-    'week': 8,
-    'category': 'Bezoek',
-    'land': 'Nederland',
-    'maatregel': 'Vanaf 29 april mogen zelfstandig wonende 70-plussers af en toe door dezelfde of twee personen worden bezocht.'
-},
-{
     'week': 10,
     'category': 'Bezoek',
     'land': 'Nederland',

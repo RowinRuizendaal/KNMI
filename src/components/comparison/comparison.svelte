@@ -1,14 +1,15 @@
 <script>
-import Lazy from 'svelte-lazy'
 import { onMount, afterUpdate} from 'svelte'
 import maatregelen from '../../store/messurements'
+import Chart from '../chart/chartjs.svelte'
 export let week;
+
 
 $: weeknummer = week;
 
 
+let test = false
 let messurement;
-let test = []
 
 // Icons to be activated or not
 $: nederland = {
@@ -79,41 +80,58 @@ const changeWeek = (nummer, land) => {
     // Return messurement based on week and land
     const findCategory = maatregelen.filter(d => d.week === nummer && d.land === land)
         .map(d => d.category.toLocaleLowerCase())
-    
 
 
     // update the specific land to false aka reset
     for (const i in categoryLand) {
         categoryLand[i] = false
-        
+
     }
 
 
-     // Find what category is going to glow and set it t true  
+    // Find what category is going to glow and set it t true  
     const findMeasure = maatregelen.filter(d => d.week === nummer && d.land === land)
         .map(d => d.maatregel)
+
 
     // If there are no messurement make sure to provide feedback     
     if (findMeasure.length === 0) {
         messurement = 'Geen data voor deze week | No data for this week'
     } else {
-       for (let i in findMeasure) {
-         messurement = findMeasure
-       }
+        for (let i in findMeasure) {
+            messurement = findMeasure
+        }
     }
 
-      if (land === 'Nederland') {
-       // Find what category is going to glow and set it t true
-       for (const i of findCategory) {
-        categoryLand[i] = true
-        textNederland[i]= messurement
+
+    let objectKey = Object.keys(textNederland)
+    let objectItalie = Object.keys(textItalie)
+
+
+    if (land === 'Nederland') {
+        // Find what category is going to glow and set it t true
+        for (const i of findCategory) {
+            categoryLand[i] = true
+            for (const x of objectKey) {
+                if (i == x) {
+                    textNederland[i] =
+                        maatregelen.filter(d => d.week === nummer && d.land === land && d.category.toLocaleLowerCase() == x)
+                        .map(d => d.maatregel)
+                }
+            }
         }
-      } else if (land === 'Italie') {
-         for (const i of findCategory) {
-        categoryLand[i] = true
-        textItalie[i] = messurement
+    } else {
+        for (const i of findCategory) {
+            categoryLand[i] = true
+            for (const x of objectItalie) {
+                if (i == x) {
+                    textItalie[i] =
+                        maatregelen.filter(d => d.week === nummer && d.land === land && d.category.toLocaleLowerCase() == x)
+                        .map(d => d.maatregel)
+                }
+            }
         }
-      }
+    }
 
 
     return messurement
@@ -140,6 +158,33 @@ onMount(() => {
    changeImage(weeknummer)
 })
 
+
+
+
+
+onMount(() => {
+    const toggle = document.getElementById('container');
+    const toggleContainer = document.getElementById('toggle-container');
+    let toggleNumber;
+    
+    toggle.addEventListener('click', function() {
+	toggleNumber = !toggleNumber;
+	if (toggleNumber) {
+		toggleContainer.style.clipPath = 'inset(0 0 0 50%)';
+		toggleContainer.style.backgroundColor = '#427468';
+	} else {
+		toggleContainer.style.clipPath = 'inset(0 50% 0 0)';
+		toggleContainer.style.backgroundColor = '#427468';
+	}
+})
+})
+
+afterUpdate(() => {
+    test = test;
+})
+
+
+
 </script>
 
 
@@ -156,6 +201,7 @@ onMount(() => {
     align-items: center;
     flex-direction: row;
     gap: 5px;
+    margin-top: 20px;
 }
 
 .icons, .icons img {
@@ -186,7 +232,7 @@ onMount(() => {
 
 .active {
     opacity: 1;
-    animation: var(--maatregel); 
+    animation: var(--maatregel) !important; 
 }
 
 
@@ -199,34 +245,121 @@ onMount(() => {
 
 
 .hide-div {
+   border-radius: 5px;
    height: 10rem;
    width: 20rem;
    background-color: #587d71;
    color: white;
    display: none;
    position: absolute;
-   top: 0;
+   top: 30rem;
 }
 
-.hide-div p {
-   max-width: 100em;
+.hide-div h4 {
+   margin-bottom: 3px;
+   margin-top: 3px;
 }
+
+
 
 .hide {
    display: none;
 }
 
+    a {
+	text-decoration: none;
+	opacity: .6;
+	padding: 60px;
+	font-weight: bolder;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	font-size: 1.4em;
+}
+
+a:hover {
+	opacity: 1;
+}
+
+#container {
+	width: 160px;
+	height: 36px;
+	margin: auto;
+	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+	user-select: none;
+	cursor: pointer;
+}
+
+.inner-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: inherit;
+	height: inherit;
+	font-size: .6em;
+   border-radius: 20px;
+}
+
+.inner-container:first-child {
+	background: #e9e9e9;
+	color: #a9a9a9;
+}
+
+.inner-container:nth-child(2) {
+	background: #427468;
+	color: white;
+	clip-path: inset(0 50% 0 0);
+	transition: .3s cubic-bezier(0,0,0,1);
+}
+
+.toggle {
+	width: 50%;
+	position: absolute;
+	height: inherit;
+	display: flex;
+	box-sizing: border-box;
+}
+
+.toggle p {
+	margin: auto;
+}
+
+.toggle:nth-child(1) {
+	right: 0;
+}
+
+#slider-nederland, #slider-italie {
+  height: 35rem;
+}
 
 </style>
 
-
-<section class='compare'>
-    <h2>Landen vergelijken week: {week}</h2>
+<div id="container">
+	<div class="inner-container">
+		<div class="toggle" on:click={() => test = !test}>
+			<p>Grafiek</p>
+		</div>
+		<div class="toggle" on:click={() => test = !test}>
+			<p>Landkaart</p>
+		</div>
+	</div>
+	<div class="inner-container" id='toggle-container'>
+		<div class="toggle" on:click={() => test = !test}>
+			<p>Grafiek</p>
+		</div>
+		<div class="toggle" on:click={() => test = !test}>
+			<p>Landkaart</p>
+		</div>
+	</div>
+</div>
+<section class="{!test ? 'compare' : 'hide'}">
+   <h2>Landen vergelijken week: {week}</h2>
     <div class="container">
        <div class="picture-1">
-          <Lazy>
-            <img id='slider-nederland' src='assets/comparison/effect-matregelen/italie/week1.png' alt='NO2 uitstoot'>
-          </Lazy>
+         <h3>Nederland</h3>
+            <img id='slider-nederland' src='assets/comparison/effect-matregelen/nederland/week1.png' alt='NO2 uitstoot'>
           <div class="icons">
              <div class="circle">
                 <img class="{nederland.buiten ? 'active' : 'not-active'}" src="./assets/Icons/buiten.svg" alt="buiten">
@@ -288,9 +421,8 @@ onMount(() => {
           <p class="hide">Nederland: {changeWeek(weeknummer, 'Nederland')}</p>
        </div>
        <div class="picture-2">
-          <Lazy>
+         <h3>Italië</h3>
             <img id='slider-italie' src='assets/comparison/effect-matregelen/italie/week1.png' alt='NO2 uitstoot'>
-          </Lazy>
           <div class="icons">
              <div class="circle">
                 <img class={italie.buiten ? 'active' : 'not-active'} src="./assets/Icons/buiten.svg" alt="buiten">
@@ -353,4 +485,8 @@ onMount(() => {
        </div>
     </div>
  </section>
+
+ <section class="{test ? 'compare' : 'hide'}">
+   <Chart />
+</section>
  

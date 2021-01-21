@@ -15,7 +15,12 @@
 	--plaatmaat: 20em; 											
 	--sheetbreedte: calc(var(--plaatmaat) * -12);
 	--sheetbreedte-adem: calc(var(--plaatmaat) * -36);
-	--maatregel: maatregeladd 5s 1 forwards
+	--maatregel: maatregeladd 2s 1 forwards;
+
+	--accent: #04da97;
+    --border-width: 6px;
+    --border-radius: 55px;
+    --font-size: 30px;
 }
 
 h1,

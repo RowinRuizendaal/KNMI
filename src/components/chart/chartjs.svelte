@@ -71,15 +71,23 @@ onMount(async () => {
         .chart-container {
             position: relative;
             height: 5vh;
-            width: 40vw
+            width: 40vw;
+            display: flex !important;
+            margin-left: 60px !important;
+
+        }
+        #myChart, #myChart2 {
+        width: 320px;
+        height: 350px;
         }
     
         @media only screen and (max-width: 600px) {
         .chart-container {
+            display: flex !important;
             height: 100vh;
             width: 100%;
-        }
       }
+    }
     </style>
     
     
@@ -87,5 +95,4 @@ onMount(async () => {
     <div class="chart-container">
     <canvas id="myChart"></canvas>
     <canvas id="myChart2"></canvas>
-    {getal}
     </div>

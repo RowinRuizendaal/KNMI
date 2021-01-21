@@ -1,5 +1,6 @@
 <script>
 import { onMount } from 'svelte';
+import Lazy from 'svelte-lazy'
 
 onMount(() => {
     const no2 = document.getElementById('no2');
@@ -30,6 +31,21 @@ onMount(() => {
 
 
     window.onscroll = () => {
+      const slider = document.querySelector('.container-slider');
+      const top = window.scrollY;
+
+      console.log(top)
+
+      if (top >= 2244) {
+         slider.style.backgroundColor = 'white'
+         slider.style.position = 'fixed'
+         slider.style.top = '0'
+      } else {
+         slider.style.backgroundColor = ''
+         slider.style.position = ''
+         slider.style.top = ''
+      }
+
         if (elementInViewport(no2)) {
             no2.classList.add('jump');
         }
@@ -166,7 +182,7 @@ svg {
    <div class="container">
       <div id="no2"></div>
       <div class="text">
-      <h2>Wat is No2?</h2>
+      <h2>Wat is NO2?</h2>
 		<p>NO2 of stikstofdioxide is een gas dat onstaat bij verschillende soorten verbrandingsprocessen. Bij hele hoge temperaturen onstaan er chemische reacties
          tusseen stikstof (N2) en zuurstof (O2). Hierbij onstaat er eerst stikstofmonoxide (NO) en door de verdere reactie met zuurstof ook stikstofdioxide (NO2).
       </p>
@@ -174,7 +190,7 @@ svg {
    </div>
    <div class="container">
       <div class="text">
-      <h2>Wat veroorzaakt No2?</h2>
+      <h2>Wat veroorzaakt NO2?</h2>
 		<p>NO2 wordt vooral veroorzaakt door verbrandingsprocessen door menselijke activiteiten, zoals het verbranden van fossiele brandstoffen (kolen, olie, aardgas, diesel, en benzine). Industrie, energiecentrales, scheepvaart en het wegverkeer zijn daardoor belangrijke sectoren voor de uitstoot van NO2 in Nederland.NO2 kan ook op natuurlijke wijze ontstaan, zoals bij bosbranden of door bliksem in de atmosfeer. Ook planten en bacteriën kunnen NO2 aanmaken in de bodem en in water.</p>
       </div>
       <div id="auto"></div>
