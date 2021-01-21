@@ -201,7 +201,6 @@ afterUpdate(() => {
     align-items: center;
     flex-direction: row;
     gap: 5px;
-    margin-top: 20px;
 }
 
 .icons, .icons img {
@@ -290,6 +289,7 @@ a:hover {
 	overflow: hidden;
 	user-select: none;
 	cursor: pointer;
+  margin-top: 15rem
 }
 
 .inner-container {

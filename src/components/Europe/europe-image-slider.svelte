@@ -26,7 +26,7 @@
   align-content: center;
   align-items: center;
   width:100%;
-  height: 25vh;
+  height: 35vh;
   z-index: 9999;
 }
 
@@ -44,7 +44,7 @@
 }
 
 #slider {
-    margin-top: -15rem;
+    margin-top: 5rem;
     width: 90vw;
     object-fit: none;
     margin-bottom: -15rem;
